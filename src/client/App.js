@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import './app.css';
-import ReactImage from './react.png';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import LoadFiles from './pages/LoadFiles/LoadFiles'
+import ShowFiles from './pages/ShowFiles/ShowFiles'
+import Header from './Header/Header'
+import Notfound from './pages/NotFound/NotFound'
 
 export default class App extends Component {
-  state = { username: null };
-
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
-
   render() {
-    const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
-      </div>
-    );
+      <Router>
+        <Header/>
+        <Switch>
+          {/* <Route exact path="/" component={App} /> */}
+          <Route path="/show" component={ShowFiles} />
+          <Route path="/" exact component={LoadFiles} />
+          <Route component={Notfound} />
+        </Switch>
+      </Router>)
   }
 }

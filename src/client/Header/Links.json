@@ -1,0 +1,26 @@
+[
+    {
+        "route": "/",
+        "text" : "Insert Song"
+
+    },
+    {
+        "route":"/song",
+        "text": "Find Song"
+    },
+    {
+        "route":"/words",
+        "text": "Find Song"
+    },
+    {
+        "route":"/groups",
+        "text": "Find Song"
+    },
+    {
+        "route":"/phrases",
+        "text": "Find Song"
+    },{
+        "route":"/statistics",
+        "text": "Statistics"
+    }
+]
