@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import LoadFiles from './pages/LoadFiles/LoadFiles'
-import ShowFiles from './pages/ShowFiles/ShowFiles'
 import Header from './Header/Header'
+import AllSongs from './pages/Songs/AllSongs'
+import Song from './pages/Songs/Song'
+import Words from './pages/Words/Words'
 import Notfound from './pages/NotFound/NotFound'
 
 export default class App extends Component {
@@ -11,9 +12,9 @@ export default class App extends Component {
       <Router>
         <Header/>
         <Switch>
-          {/* <Route exact path="/" component={App} /> */}
-          <Route path="/show" component={ShowFiles} />
-          <Route path="/" exact component={LoadFiles} />
+          <Route path="/words/:word" component={Words} />
+          <Route path="/songs/:id" component={Song} />
+          <Route path="/" exact component={AllSongs} />
           <Route component={Notfound} />
         </Switch>
       </Router>)
