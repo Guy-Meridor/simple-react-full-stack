@@ -10,8 +10,6 @@ import Slide from '@material-ui/core/Slide';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import SongService from './SongService';
-import FormControl from '@material-ui/core/FormControl';
-
 
 const useStyles = makeStyles(theme => ({
     fileInputContainer: {
@@ -23,7 +21,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function FormDialog(props) {
+export default function AddSong(props) {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
@@ -39,20 +37,7 @@ export default function FormDialog(props) {
         setValues({ ...values, [name]: event.target.files[0] })
     }
 
-    const addSong = async () => {
-        const metadata = {
-            name: values.name,
-            artist: values.artist,
-            hasPicture: !!(values.image)
-        };
-
-        const { lyrics, image } = values;
-
-        const result = await SongService.addSong({ metadata, lyrics, image })
-        props.handleClose();
-    }
     return (
-
         <Dialog
             open={props.open}
             onClose={props.handleClose}
@@ -62,7 +47,6 @@ export default function FormDialog(props) {
             <form method="post" action="/api/songs" encType="multipart/form-data">
                 <DialogContent>
                     <TextField
-                        autoFocus
                         margin="dense"
                         label="name"
                         type="text"

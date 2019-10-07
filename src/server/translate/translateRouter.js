@@ -7,7 +7,7 @@ const { projectId } = credentials;
 // Imports the Google Cloud client library
 const { Translate } = require('@google-cloud/translate');
 
-// Instantiates a client
+// Instantiates a client 
 const translate = new Translate({ projectId });
 
 router.post('/', async (req, res) => {

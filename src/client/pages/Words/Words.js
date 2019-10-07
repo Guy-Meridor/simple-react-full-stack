@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Input } from 'semantic-ui-react'
 import { makeStyles } from '@material-ui/core/styles';
 import _ from 'lodash';
-import QuotesCard from './Quotes/QuotesCard';
+import WordsQuotesCard from './Quotes/WordsQuotesCard';
 import TranslateCard from './Translate/TranslateCard';
+import SearchWords from './SearchWords'
 
 const useStyles = makeStyles({
     root: {
@@ -13,14 +13,6 @@ const useStyles = makeStyles({
     title: {
         textAlign: 'center',
         marginBottom: '3vh'
-    },
-    searchBar: {
-        width: '50%',
-        marginRight: '25%',
-        marginLeft: '25%',
-        '& input::-webkit-calendar-picker-indicator': {
-            display: 'none'
-        }
     },
     cardsContainer: {
         marginTop: '3vh',
@@ -47,15 +39,15 @@ function Words({ match }) {
     const { word } = match.params;
 
     return <div className={classes.root}>
-        <Typography className={classes.title} variant="h4">
+        <Typography className={classes.title} variant="h5">
             Words
         </Typography>
 
-        <Input value={word} className={classes.searchBar} icon="search" placeholder='Search Word...' />
-        <div className={classes.cardsContainer}>
-            <QuotesCard className={classes.quotesCard} word={word} />
-            <TranslateCard className={classes.translateCard} word={word}/>
-        </div>
+        <SearchWords word={word}/>
+        {word && <div className={classes.cardsContainer}>
+            <WordsQuotesCard className={classes.quotesCard} words={[word]} />
+            <TranslateCard className={classes.translateCard} word={word} />
+        </div>}
     </div >
 }
 

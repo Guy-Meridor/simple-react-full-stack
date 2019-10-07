@@ -18,8 +18,7 @@ const useStyles = makeStyles({
 
 function WordLink(props) {
     const classes = useStyles();
-    return <span> <Link className={classes.link} to={`/words/${props.word}`}> {props.word}</Link>
-    </span>
+    return <span> <Link className={classes.link} to={`/words/${props.word}`}>{props.word}</Link></span>
 }
 
 export default WordLink

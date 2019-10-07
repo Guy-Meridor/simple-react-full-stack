@@ -5,6 +5,7 @@ const WordAPI = axios.create({
 
 const publicApi = {};
 
-publicApi.getWordsInstances = word => WordAPI.get(`${word}/instances`);
+publicApi.getWordsInstances = word => WordAPI.get(`/${word}/instances`);
+publicApi.getWordsStartsWith = prefix => WordAPI.get(`/startsWith/${prefix}`)
 
 export default publicApi;

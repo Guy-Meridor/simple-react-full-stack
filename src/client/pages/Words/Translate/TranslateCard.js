@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     },
     translation: {
         marginTop: '6vh',
-        marginBottom: '6vh',
+        paddingBottom: '10vh',
         display: 'flex'
     },
     from: {
@@ -30,20 +30,25 @@ function TranslateCard(props) {
     const countryOptions = [
         { key: 'he', value: 'he', flag: 'il', text: 'Hebrew' },
         { key: 'fr', value: 'fr', flag: 'fr', text: 'French' },
+        { key: 'it', value: 'it', flag: 'it', text: 'Italian' },
         { key: 'es', value: 'es', flag: 'es', text: 'Spanish' }]
 
-    const [translation, setTranslation] = useState([]);
+    const [translation, setTranslation] = useState('');
+    const [language, setLanguage] = useState(countryOptions[0].value);
 
     async function fetchTranslate() {
-        const result = await TranslateService.translate(props.word, 'he')
+        const result = await TranslateService.translate(props.word, language)
 
         setTranslation(result.data);
     }
 
     useEffect(() => {
         fetchTranslate();
-    }, []);
+    }, [props.word, language]);
 
+    const languageChange = (e, data) => {
+        setLanguage(data.value);
+     }
 
     return <Card className={props.className}>
         <CardContent>
@@ -57,6 +62,8 @@ function TranslateCard(props) {
                 search
                 selection
                 options={countryOptions}
+                value={language}
+                onChange={languageChange}
             />
             <div className={classes.translation}>
 

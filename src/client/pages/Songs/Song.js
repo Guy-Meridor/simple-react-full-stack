@@ -65,10 +65,10 @@ function Song({ match }) {
 
         const song = result.data.map((current, index) =>
             (current.type === 'word'
-                // ? <span key={index}> <a href={`/words/${current.element}`}> {current.element}</a></span>
-                ? <WordLink key={index} word={current.element}/>
+                ? <WordLink key={index} word={current.element} />
                 : current.element)
-        );
+        )
+
         setLyrics(song)
     }
 

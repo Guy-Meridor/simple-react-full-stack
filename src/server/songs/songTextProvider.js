@@ -3,8 +3,9 @@ const dbProvider = require('./songsDBProvider');
 const root = require('app-root-path');
 
 var paragraphHeader = /\[(.*?)\]/
-const sentenceSeperatorRegex = /[\w"']+|[^\s\w]/g
-const marks = '[.,!?\\-]'
+const sentenceSeperatorRegex = /[\w']+|[^\s\w]/g
+const marks = '[.,!?\\-\(\)"‘’—]'
+//const otherMarks = '[\(\)"‘’]'
 const newLine = '\n';
 const markTypes = {
     whiteSpace: 'white_space',

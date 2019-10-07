@@ -56,7 +56,7 @@ function AllSongs() {
         <div>
             <Typography className={classes.title} variant="h5">
                 Songs
-                <IconButton onClick={handleClickOpen}>
+            <IconButton onClick={handleClickOpen}>
                     <Icon color='primary' className={classes.addIcon}>add</Icon>
                 </IconButton>
             </Typography>

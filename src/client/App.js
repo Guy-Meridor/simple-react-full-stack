@@ -4,6 +4,7 @@ import Header from './Header/Header'
 import AllSongs from './pages/Songs/AllSongs'
 import Song from './pages/Songs/Song'
 import Words from './pages/Words/Words'
+import Groups from './pages/Groups/Groups'
 import Notfound from './pages/NotFound/NotFound'
 
 export default class App extends Component {
@@ -12,7 +13,8 @@ export default class App extends Component {
       <Router>
         <Header/>
         <Switch>
-          <Route path="/words/:word" component={Words} />
+          <Route path="/words/:word?" component={Words} />
+          <Route path="/groups/:group?" component={Groups} />
           <Route path="/songs/:id" component={Song} />
           <Route path="/" exact component={AllSongs} />
           <Route component={Notfound} />
