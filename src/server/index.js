@@ -1,7 +1,6 @@
 const express = require('express');
-const songsRouter = require('./songs/songsRouter')
-const wordsRouter = require('./words/wordsRouter')
-const translateRouter = require('./translate/translateRouter')
+const api = require('./api')
+
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload');
 const app = express();
@@ -14,9 +13,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('views', 'C:\\Guy\\מדעי המחשב\\סדנה בסיסי נתונים\\Project\\simple-react-full-stack\\dist')
 app.set('view engine', 'html');
 
-app.use('/api/songs', songsRouter);
-app.use('/api/words', wordsRouter);
-app.use('/api/translate', translateRouter);
+app.use('/api', api);
 app.use('/assets', express.static('assets'));
 app.use(express.static('dist'));
 /* GET React App */

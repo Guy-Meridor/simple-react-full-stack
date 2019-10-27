@@ -2,34 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Input } from 'semantic-ui-react'
 import WordsService from './WordService'
 import { makeStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom'
-
 
 const useStyles = makeStyles({
     searchBar: {
-        width: '50%',
-        marginRight: '25%',
-        marginLeft: '25%',
-        '& input::-webkit-calendar-picker-indicator': {
-            display: 'none'
-        }
+        width: '100%',
     }
-});
+})
+
 
 function SearchWords(props) {
-    const classes = useStyles();
-    const { word } = props;
+    const classes = useStyles()
+    const { value } = props;
 
-    const [search, setSearch] = useState(word || '');
+    const [search, setSearch] = useState(value);
     const [searchResults, setSearchResults] = useState([]);
 
     const searchChange = (e, data) => {
         setSearch(data.value);
+        if (props.onChange) {
+            props.onChange(e)
+        }
     }
 
     const executeSearch = e => {
-        if (e.key == 'Enter')
-            props.history.push(`/words/${search}`)
+        if (props.executeSearch && e.key == 'Enter') {
+            const result = props.executeSearch(search);
+            if (result){
+                setSearch('')
+            }
+
+        }
     }
 
     async function fetchSearch() {
@@ -48,26 +50,23 @@ function SearchWords(props) {
     }, [search]);
 
     useEffect(() => {
-        setSearch(word)
-    }, [word])
+        setSearch(value)
+    }, [value])
 
-    // return <Dropdown
-    //     className={classes.searchBar}
-    //     placeholder='Search Words'
-    //     search
-    //     selection
-    //     options={[1,2,3]}
-    //     onChange={searchChange}
-    //     value={search}
-    // />
-
-    return <div>
-        <Input list="words" value={search} onKeyPress={executeSearch} onChange={searchChange} className={classes.searchBar} icon="search" placeholder='Search Word...' />
-        <datalist id='words'>
+    return <div className={props.className}>
+        <Input
+            list={`${props.id}-words`}
+            value={search || ''}
+            onKeyPress={executeSearch}
+            onChange={searchChange}
+            icon="search"
+            placeholder='Search Word...'
+            className={`${props.inputClassName} ${classes.searchBar}`} />
+        <datalist id={`${props.id}-words`}>
             {searchResults.map(r => <option key={r} value={r}></option>)}
         </datalist>
 
     </div>
 }
 
-export default withRouter(SearchWords)
+export default SearchWords

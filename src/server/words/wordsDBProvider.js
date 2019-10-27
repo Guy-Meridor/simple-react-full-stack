@@ -13,4 +13,9 @@ publicApi.getWordsStartsWith = async word => {
     return result.rows.map(word => word.get_word_startswith);
 }
 
+publicApi.getWords = async word => {
+    const result = await db.function('get_words');
+    return result.rows.map(word => word.get_words);
+}
+
 module.exports = publicApi; 

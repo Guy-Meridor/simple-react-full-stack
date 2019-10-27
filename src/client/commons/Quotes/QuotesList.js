@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 
 function QuotesList(props) {
     return <List>
-        {props.quotes.map((quote, i) => <Quote key={quote.key} {...quote} />)
+        {props.quotes.map((quote, i) => <Quote key={quote.song.id} {...quote} />)
             .reduce((acc, curr, idx) =>
                 acc.concat(curr, <Divider key={`d${idx}`} variant="inset" component="li" />), [])}
     </List>

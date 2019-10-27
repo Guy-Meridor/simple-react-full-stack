@@ -8,6 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { makeStyles } from '@material-ui/core/styles';
+import SearchWords from '../Words/SearchWords'
+import GroupsService from './GroupsService'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     addWords: {
         marginTop: '2vh'
     },
+    wordsInput: {
+        margin: '5px'
+    }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -60,6 +65,17 @@ export default function AddGroup(props) {
         setWords(newArray)
     }
 
+    const addGroup = async () => {
+        const { name } = values;
+        const group = { name, words };
+        const result = await GroupsService.API.post('/', { group });
+
+        if (result) {
+            props.onAdd(group);
+        }
+
+    }
+
     return (
         <Dialog
             open={props.open}
@@ -70,6 +86,7 @@ export default function AddGroup(props) {
             <DialogTitle id="form-dialog-title">Add Group</DialogTitle>
 
             <DialogContent>
+
                 <TextField
                     margin="dense"
                     label="Group Name"
@@ -98,15 +115,9 @@ export default function AddGroup(props) {
                     Words
                     </Typography>
 
-                {words.map((currWord, index) => <TextField
-                    key={index}
-                    margin="dense"
-                    label={index + 1}
-                    type="text"
-                    onChange={wordChange(index)}
-                    value={words[index]}
-                    fullWidth
-                />)}
+                {words.map((currWord, index) => (
+                    <SearchWords className={classes.wordsInput} id={`addGroup_${index}`} key={index} value={currWord} onChange={wordChange(index)} />
+                ))}
 
             </DialogContent>
             <DialogActions>
@@ -114,7 +125,7 @@ export default function AddGroup(props) {
                     Cancel
           </Button>
                 <Button type="submit"
-                    // onClick={addSong}
+                    onClick={addGroup}
                     color="primary">
                     Add
           </Button>

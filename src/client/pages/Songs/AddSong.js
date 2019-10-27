@@ -48,7 +48,7 @@ export default function AddSong(props) {
                 <DialogContent>
                     <TextField
                         margin="dense"
-                        label="name"
+                        label="Name"
                         type="text"
                         onChange={textHandleChange('name')}
                         value={values.name}

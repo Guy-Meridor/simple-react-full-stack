@@ -20,11 +20,11 @@ publicApi.addWordsFromFile = async songId => {
     const path = `${root.path}/assets/songLyrics/${songId}.txt`;
 
     let paragraph,
-        totalLineIndex = lineIndex = index = 1;
+        totalLineIndex = lineIndex = inlineIndex = index = 1;
 
     const dbPromises = [];
     lineReader.eachLine(path, function (line) {
-        let inlineIndex = 1;
+        inlineIndex = 1;
         if (!line) {
             const newLineInsertPromise = dbProvider.addMarkToSong({ mark: newLine, type: markTypes.whiteSpace, songId, index, paragraph, lineIndex, totalLineIndex })
             dbPromises.push(newLineInsertPromise);

@@ -7,5 +7,6 @@ const publicApi = {};
 
 publicApi.getWordsInstances = word => WordAPI.get(`/${word}/instances`);
 publicApi.getWordsStartsWith = prefix => WordAPI.get(`/startsWith/${prefix}`)
+publicApi.API = WordAPI;
 
 export default publicApi;

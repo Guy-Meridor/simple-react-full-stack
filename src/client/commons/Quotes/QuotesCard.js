@@ -5,15 +5,14 @@ import CardContent from '@material-ui/core/CardContent';
 import QuotesList from './QuotesList'
 
 function QuotesCard(props) {
-
     return <Card className={props.className}>
         <CardContent>
             <Typography variant="h5">
-                Quotes - {props.quotes.length}
-        </Typography>
-            <QuotesList quotes={props.quotes}/>
+                Quotes - {props.quotes.reduce((acc, curr) => acc + curr.lines.length, 0)}
+            </Typography>
+            <QuotesList quotes={props.quotes} />
         </CardContent>
-    </Card>
+    </Card >
 }
 
 export default QuotesCard

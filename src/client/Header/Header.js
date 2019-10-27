@@ -12,8 +12,7 @@ const useStyles = makeStyles(theme => ({
             textDecoration: 'none',
             color: 'white',
             fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-            fontSize:'16px'
-
+            fontSize: '16px',
         }
     },
     toolbar: {

@@ -32,25 +32,28 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SongView(props) {
+export default function SongView({ song }) {
     const classes = useStyles();
+    const imageUrl = song.has_image ?
+        `/assets/songImages/${song.id}.jpg` :
+        `/assets/songImages/default.png`;
 
     return (
-        <Link className={classes.rootLink} to={`/songs/${props.song.id}`}>
+        <Link className={classes.rootLink} to={`/songs/${song.id}`}>
             <Card className={classes.card}>
-                    <CardMedia
-                        className={classes.cover}
-                        image={`/assets/songImages/${props.song.id}.jpg`}
-                        title={props.song.name}
-                    />
-                    <CardContent className={classes.content}>
-                        <Typography variant="h6">
-                            {props.song.name}
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            {props.song.artist}
-                        </Typography>
-                    </CardContent>
+                <CardMedia
+                    className={classes.cover}
+                    image={imageUrl}
+                    title={song.name}
+                />
+                <CardContent className={classes.content}>
+                    <Typography variant="h6">
+                        {song.name}
+                    </Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                        {song.artist}
+                    </Typography>
+                </CardContent>
             </Card>
         </Link>
     );

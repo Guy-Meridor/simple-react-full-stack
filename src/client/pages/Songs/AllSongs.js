@@ -6,12 +6,20 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton'
 import AddSong from './AddSong'
 import SongService from './SongService'
+import FilterSongs from './FilterSongs'
 
 const useStyles = makeStyles(theme => ({
     songsContainer: {
-        width: '50%',
-        marginLeft: '25%',
-        marginRight: '25 %',
+        marginLeft: '10%',
+        float: 'left',
+        width: '40%'
+    },
+    filterContainer: {
+        marginTop:'2vh',
+        marginRight: '10%',
+        float: 'right',
+        width: '33%'
+
     },
     title: {
         textAlign: 'center',
@@ -64,6 +72,10 @@ function AllSongs() {
                 {songs.map(song => (
                     <SongView key={song.id} song={song} />
                 ))}
+            </div>
+
+            <div className={classes.filterContainer}>
+                    <FilterSongs setSongs={setSongs} clearFilters={fetchSongs}></FilterSongs>
             </div>
             <AddSong open={dialogOpen} handleClose={handleClose} afterSave={fetchSongs}></AddSong>
         </div>

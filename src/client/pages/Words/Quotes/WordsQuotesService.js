@@ -10,7 +10,9 @@ publicApi.createLine = (words, elements) => {
         }
 
         else {
-            if (curr.element.toLowerCase() == word.toLowerCase()) {
+            const currRegex = new RegExp(curr.element, 'i');
+            
+            if (words.some(word => currRegex.exec(word))) {
                 return <b key={i}> {curr.element} </b>
             }
             else {
@@ -22,16 +24,12 @@ publicApi.createLine = (words, elements) => {
     return line;
 }
 
-publicApi.createQuote = (instance, line) => ({
-    line,
+publicApi.createQuote = (instance, text) => ({
+    text,
     paragraph: instance.paragraph,
     lineIndex: instance.line_index,
-    key: `${instance.song_id}-${instance.total_line_index}`,
-    song: {
-        id: instance.song_id,
-        name: instance.song_name,
-        artist: instance.song_artist,
-    }
+    totalLineIndex: instance.total_line_index,
+    key:`${instance.song_id}-${instance.total_line_index}`
 });
 
 export default publicApi;
