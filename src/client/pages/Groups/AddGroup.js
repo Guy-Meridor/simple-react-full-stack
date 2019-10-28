@@ -68,7 +68,7 @@ export default function AddGroup(props) {
     const addGroup = async () => {
         const { name } = values;
         const group = { name, words };
-        const result = await GroupsService.API.post('/', { group });
+        const result = await GroupsService.addGroup(group);
 
         if (result) {
             props.onAdd(group);

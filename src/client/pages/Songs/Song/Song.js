@@ -9,7 +9,7 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton'
 import FindInSong from './FindInSong'
 import Box from '@material-ui/core/Box';
-import ActionButtons from '../../../commons/ActionButtons'
+import DeleteButton from '../../../commons/DeleteButton'
 import Grid from '@material-ui/core/Grid';
 import MarkMenu from './MarkMenu'
 
@@ -95,7 +95,7 @@ function Song({ match }) {
                             <Typography variant="h4" component="span">
                                 {titles.name}
                             </Typography>
-                            <ActionButtons onEdit={alert} onDelete={alert} />
+                            <DeleteButton onDelete={alert} />
                         </Box>
                         <Typography variant="h6" color="textSecondary">
                             {titles.artist}

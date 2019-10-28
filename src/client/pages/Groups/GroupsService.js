@@ -4,9 +4,11 @@ const GroupsAPI = axios.create({
 });
 
 const publicAPI = {}
-publicAPI.API = GroupsAPI;
 
 publicAPI.addWordToGroup = (group, word) => GroupsAPI.post(`/${group}`, { word });
+publicAPI.addGroup = group => GroupsAPI.post('/', { group });
+publicAPI.getGroups = GroupsAPI.get;
+publicApi.deleteGroup = groupName => GroupsAPI.delete(`/${groupName}`);
 
 
 export default publicAPI

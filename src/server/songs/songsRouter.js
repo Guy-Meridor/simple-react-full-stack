@@ -3,6 +3,11 @@ const router = express.Router()
 const songsDBProvider = require('./songsDBProvider');
 const songsTextProvider = require('./songTextProvider');
 const root = require('app-root-path');
+const fsPromises = require('fs').promises;
+
+const assetsPath = `${root.path}/assets`;
+const songLyricsPath = `${assetsPath}/songLyrics`
+const songImagesPath = `${assetsPath}/songImages`;
 
 router.get('/', async function (req, res) {
   songsDBProvider.getSongs().then(songs => {
@@ -20,12 +25,16 @@ router.post('/', async (req, res) => {
   const newId = await songsDBProvider.addSong({ name, artist, hasImage });
 
   const promises = [];
-  const lyricsPromise = lyrics.mv(`${root.path}/assets/songLyrics/${newId}.txt`).then(
+  const lyricsPromise = lyrics.mv(`${songLyricsPath}/${newId}.txt`).then(
     () => songsTextProvider.addWordsFromFile(newId))
   promises.push(lyricsPromise);
 
   if (hasImage) {
-    const imagePromise = image.mv(`${root.path}/assets/songImages/${newId}.jpg`)
+    const imagePromise = image.mv(`${songImagesPath}/${newId}.jpg`)
+    promises.push(imagePromise);
+  }
+  else {
+    const imagePromise = fsPromises.copyFile(`${songImagesPath}/default.png`, `${songImagesPath}/${newId}.jpg`)
     promises.push(imagePromise);
   }
 

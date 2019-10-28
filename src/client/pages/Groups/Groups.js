@@ -40,7 +40,7 @@ function Groups({ match, history }) {
     const [groups, setGroups] = React.useState([]);
 
     async function fetchGroups() {
-        const result = await GroupsService.API.get();
+        const result = await GroupsService.getGroups();
         const fetchedGroups = result.data;
 
         setGroups(fetchedGroups);

@@ -29,4 +29,13 @@ router.post('/:group', async function (req, res) {
   })
 })
 
+router.delete('/:group', async function (req, res) {
+  const { group } = req.params;
+  dbProvider.deleteGroup(group).then(result => {
+    res.json(true)
+  }, (err) => {
+    res.status(500).json(err)
+  })
+})
+
 module.exports = router;

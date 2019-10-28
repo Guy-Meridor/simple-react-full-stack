@@ -43,7 +43,7 @@ function Phrases({ match, history }) {
     const [phrases, setPhrases] = React.useState([]);
 
     async function fetchPhrases() {
-        const result = await PhrasesService.API.get();
+        const result = await PhrasesService.getPhrases();
 
         setPhrases(result.data)
 
@@ -82,7 +82,7 @@ function Phrases({ match, history }) {
     }
 
     const onDeletePhrase = async phrase => {
-        if (confirm(`Are you sure you want to delete the phrase ${phrase}?`)) {
+        if (confirm(`Are you sure you want to delete the phrase: ${phrase}?`)) {
 
             const result = await PhrasesService.deletePhrase(phrase);
             if (result.data) {

@@ -36,6 +36,8 @@ publicApi.getLines = (songId, start, finish) =>
 publicApi.getLine = (songId, line) =>
     SongAPI.get(`/${songId}/line/${line}`)
 
+publicApi.deleteSong = songId => SongAPI.delete(`/${songId}`)
+
 export default publicApi;
 
 

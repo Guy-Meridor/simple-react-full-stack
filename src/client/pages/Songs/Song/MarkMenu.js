@@ -42,6 +42,9 @@ function MarkMenu(props) {
     const renderOptions = () => {
         if (isPhrase) {
             return <List>
+                <ListItem button onClick={redirectToWordPage} >
+                    <ListItemText primary={'See Phrase References'} />
+                </ListItem>
                 <ListItem button onClick={addPhraseAndRedirect} >
                     <ListItemText primary={'Add To Phrases'} />
                 </ListItem>

@@ -18,5 +18,11 @@ publicApi.addToGroup = async (group, word) => {
     return result.rows;
 }
 
+publicApi.deleteGroup = async groupName => {
+    const params = [groupName];
+    const result = await db.function('delete_group', params, true);
+    return result;
+}
+
 
 module.exports = publicApi;

@@ -6,7 +6,7 @@ function AllGroupsDialog(props) {
 
     const [groups, setGroups] = useState([]);
     async function fetchWords() {
-        const result = await GroupsService.API.get();
+        const result = await GroupsService.getGroups();
 
         const groupNames = result.data.map(grp => grp.name);
         setGroups(groupNames);

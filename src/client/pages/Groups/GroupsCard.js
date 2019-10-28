@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { List } from 'semantic-ui-react'
 import { Input } from 'semantic-ui-react'
 import Box from '@material-ui/core/Box';
-import ActionButtons from '../../commons/ActionButtons'
+import DeleteButton from '../../commons/DeleteButton'
 
 function GroupsCard(props) {
     const { chosen, groups } = props;
@@ -58,7 +58,7 @@ function GroupsCard(props) {
                         <List.Header>
                             <Box display="flex" justifyContent="space-between">
                                 {group.name}
-                                <ActionButtons onEdit={alert} onDelete={alert}/>
+                                <DeleteButton onDelete={alert}/>
                             </Box>
                         </List.Header>
                         {group.words.join(', ')}

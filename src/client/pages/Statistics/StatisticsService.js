@@ -31,6 +31,5 @@ async function getStat(path)  {
 
     return lengths;
 }
-publicApi.API = StatisticsAPI;
 
 export default publicApi;

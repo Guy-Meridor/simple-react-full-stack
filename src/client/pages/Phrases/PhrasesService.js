@@ -6,12 +6,11 @@ const PhrasesAPI = axios.create({
     baseURL: `/api/phrases`,
 });
 
-publicApi.API = PhrasesAPI;
-
 publicApi.addPhrase = phrase => PhrasesAPI.post('/', { phrase });
 publicApi.getPhraseInstances = phrase => PhrasesAPI.get(`/${phrase}/instances`);
 
 publicApi.deletePhrase = phrase => PhrasesAPI.delete(`/${phrase}`)
+publicApi.getPhrases = PhrasesAPI.get;
 
 publicApi.createLine = (phrase, elements) => {
     const phraseElements = phrase.split(' ');

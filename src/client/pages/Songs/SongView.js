@@ -34,16 +34,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function SongView({ song }) {
     const classes = useStyles();
-    const imageUrl = song.has_image ?
-        `/assets/songImages/${song.id}.jpg` :
-        `/assets/songImages/default.png`;
 
     return (
         <Link className={classes.rootLink} to={`/songs/${song.id}`}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cover}
-                    image={imageUrl}
+                    image={`/assets/songImages/${song.id}.jpg`}
                     title={song.name}
                 />
                 <CardContent className={classes.content}>

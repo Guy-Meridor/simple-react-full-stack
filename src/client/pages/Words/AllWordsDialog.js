@@ -6,7 +6,7 @@ function AllWordsDialog(props) {
 
     const [words, setWords] = useState([]);
     async function fetchWords() {
-        const result = await WordService.API.get();
+        const result = await WordService.getWords();
 
         setWords(result.data);
     }
