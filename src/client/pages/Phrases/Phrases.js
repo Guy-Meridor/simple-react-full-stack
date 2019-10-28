@@ -46,6 +46,10 @@ function Phrases({ match, history }) {
         const result = await PhrasesService.API.get();
 
         setPhrases(result.data)
+
+        if (result.data.length > 0 && !match.params.phrase) {
+            selectPhrase(result.data[0])
+        }
     }
 
     useEffect(() => {

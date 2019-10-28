@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router();
-
-process.env.GOOGLE_APPLICATION_CREDENTIALS = './Song Analyzer-9cc26a513377.json'
-const credentials = require('./Song Analyzer-9cc26a513377.json');
+// const credentialsPath = './Song Analyzer-9cc26a513377.json';
+require('../')
+const credentialsPath = './Song Analyzer-9cc26a513377.json';
+process.env.GOOGLE_APPLICATION_CREDENTIALS = credentialsPath
+const credentials = require(`../../../${credentialsPath}`);
 const { projectId } = credentials;
 // Imports the Google Cloud client library
 const { Translate } = require('@google-cloud/translate');

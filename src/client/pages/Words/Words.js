@@ -7,6 +7,7 @@ import TranslateCard from './Translate/TranslateCard';
 import SearchWords from './SearchWords'
 import { withRouter } from 'react-router-dom'
 import AllWordsDialog from './AllWordsDialog'
+import PhraseQuotes from '../Phrases/PhraseQuotes'
 
 const useStyles = makeStyles({
     root: {
@@ -16,8 +17,8 @@ const useStyles = makeStyles({
         textAlign: 'center',
         marginBottom: '3vh'
     },
-    container:{
-        display:'flex'
+    container: {
+        display: 'flex'
     },
     searchBarContainer: {
         marginLeft: '25%',
@@ -59,6 +60,8 @@ function Words({ match, history }) {
     const [wordsDialogOpen, setWordsDialogOpen] = useState(false);
     const toggleWordsDialog = state => () => setWordsDialogOpen(state);
 
+    const isPhrase = word && word.includes(' ');
+
     return <div className={classes.root}>
         <Typography className={classes.title} variant="h5">
             Words
@@ -68,7 +71,9 @@ function Words({ match, history }) {
             <Typography color="primary" onClick={toggleWordsDialog(true)}>All Words</Typography>
         </div>
         {word && <div className={classes.cardsContainer}>
-            <WordsQuotesCard className={classes.quotesCard} words={[word]} />
+            {isPhrase ? <PhraseQuotes className={classes.quotesCard} phrase={word} /> :
+                <WordsQuotesCard className={classes.quotesCard} words={[word]} />}
+
             <TranslateCard className={classes.translateCard} word={word} />
         </div>}
 

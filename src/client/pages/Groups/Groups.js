@@ -41,10 +41,10 @@ function Groups({ match, history }) {
 
     async function fetchGroups() {
         const result = await GroupsService.API.get();
-        const groups = result.data;
+        const fetchedGroups = result.data;
 
-        setGroups(groups);
-        return groups;
+        setGroups(fetchedGroups);
+        return fetchedGroups;
     }
 
     const setChosenGroup = (chosenName, groups) => {
@@ -59,6 +59,9 @@ function Groups({ match, history }) {
             const result = await fetchGroups();
             if (match.params.group) {
                 setChosenGroup(match.params.group, result);
+            }
+            else{
+                selectGroup(result[0].name)
             }
         }
 
