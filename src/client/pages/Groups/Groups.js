@@ -37,7 +37,7 @@ function Groups({ match, history }) {
 
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [chosenGroup, setChosen] = React.useState(null);
-    const [groups, setGroups] = React.useState([]);
+    const [groups, setGroups] = React.useState([ ]);
 
     async function fetchGroups() {
         const result = await GroupsService.getGroups();
