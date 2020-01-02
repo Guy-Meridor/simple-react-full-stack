@@ -17,47 +17,37 @@ const useStyles = makeStyles({
     }
 })
 
-function GroupInstances(props) {
-    const { group } = props;
+function InstancesCard(props) {
+
     const [Instances, setInstances] = useState([]);
     const tableRef = useRef(null);
 
     async function fetchInstances() {
-        let tempArray = [];
-        group.words.forEach(async word => {
-            const result = await WordService.getWordsInstances(word);
-            const instances = result.data.map(ins => ({...ins, word}));
+        const result = await WordService.getAllInstances();
 
-            tempArray = tempArray.concat(instances);
-            setInstances(tempArray);
-        });
+        setInstances(result.data)
+    }
+
+    function saveTable(){
+        ExcelExporter(tableRef.current, 'word-instances')
     }
 
     useEffect(() => {
-        setInstances([])
         fetchInstances();
-    }, [props.group]);
-
-    function saveTable(){
-        ExcelExporter(tableRef.current, `${group.name}-indexes`)
-    }
+    }, []);
 
     return <Card className={props.className}>
         <CardContent>
-            <Box justifyContent="space-between" display="flex">
-                <Typography variant="h5">
-                    {group.name}
-                </Typography>
+            <Box justifyContent="center" display="flex">
                 <IconButton onClick={saveTable}>
                     <Icon color='primary'>save</Icon>
                 </IconButton>
             </Box>
             <InstancesTable instances={Instances} tableRef={tableRef}/>
-
         </CardContent>
     </Card>
 
 
 }
 
-export default GroupInstances;
+export default InstancesCard;

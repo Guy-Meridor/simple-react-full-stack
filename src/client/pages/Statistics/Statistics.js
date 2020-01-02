@@ -13,16 +13,14 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         flexWrap:'wrap',
-        // margin: '0.8%'
     },
     statCard: {
-        margin: '0.5%',
-        // float: 'left',
+        margin: '0.35%',
         width: '31.5vw',
     },
     pieContainer: {
         width: '31vw',
-        height: '45vh'
+        height: '38vh'
     }
 })
 
@@ -36,19 +34,24 @@ function Statistics(props) {
             getData: StatisticsService.getWordsLengths
         },
         {
-            title: 'Words In Lines',
+            title: 'Most Common Phrases',
             scheme: 'accent',
+            getData: StatisticsService.getPhrasesCounts
+        },
+        {
+            title: 'Most Common Words',
+            scheme: 'paired',
+            getData: StatisticsService.getWordsCounts
+        },
+        {
+            title: 'Words In Lines',
+            scheme: 'red_blue',
             getData: StatisticsService.getLinesLengths
         },
         {
             title: 'Words In Paragraphs',
             scheme: 'dark2',
             getData: StatisticsService.getParagraphsLengths
-        },
-        {
-            title: 'Most Common Words',
-            scheme: 'paired',
-            getData: StatisticsService.getWordsCounts
         }
     ]
 

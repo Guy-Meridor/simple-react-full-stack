@@ -11,6 +11,14 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/instances', (req, res) => {
+  wordsDBProvider.getAllInstances().then(words => {
+    res.json(words)
+  }, (err) => {
+    res.status(500).json(err)
+  })
+})
+
 router.get('/:word/instances', (req, res) => {
   wordsDBProvider.getWordInstances(req.params.word).then(instances => {
     res.json(instances)

@@ -54,10 +54,10 @@ publicApi.getWordByIndex = async (songId, line, index) => {
     return result.rows.length && result.rows[0].get_word_by_index;
 }
 
-publicApi.addSong = async ({ name, artist, hasImage }) => {
-    const params = [name, artist, hasImage];
-    const result = await db.function('addsong', params, true);
-    return result.rows[0].addsong;
+publicApi.addSong = async ({ name, artist }) => {
+    const params = [name, artist];
+    const result = await db.function('add_song', params, true);
+    return result.rows[0].add_song;
 }
 
 publicApi.addWordToSong = async ({ word, songId, index, paragraph, lineIndex, totalLineIndex, inlineIndex }) => {

@@ -21,15 +21,13 @@ router.post('/', async (req, res) => {
   const { name, artist } = req.body;
   const { image, lyrics } = req.files;
 
-  const hasImage = !!image;
-  const newId = await songsDBProvider.addSong({ name, artist, hasImage });
-
+  const newId = await songsDBProvider.addSong({ name, artist });
   const promises = [];
   const lyricsPromise = lyrics.mv(`${songLyricsPath}/${newId}.txt`).then(
     () => songsTextProvider.addWordsFromFile(newId))
   promises.push(lyricsPromise);
 
-  if (hasImage) {
+  if (image) {
     const imagePromise = image.mv(`${songImagesPath}/${newId}.jpg`)
     promises.push(imagePromise);
   }

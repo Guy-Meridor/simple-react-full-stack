@@ -20,8 +20,8 @@ function PhrasesCard(props) {
     }
 
     const onPhraseDelete = phrase => e => {
-        if (props.deletePhrase)
-            props.deletePhrase(phrase)
+        e.stopPropagation();
+        props.deletePhrase(phrase)
     }
 
     useEffect(() => {

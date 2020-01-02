@@ -37,7 +37,7 @@ function Groups({ match, history }) {
 
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [chosenGroup, setChosen] = React.useState(null);
-    const [groups, setGroups] = React.useState([ ]);
+    const [groups, setGroups] = React.useState([]);
 
     async function fetchGroups() {
         const result = await GroupsService.getGroups();
@@ -60,7 +60,7 @@ function Groups({ match, history }) {
             if (match.params.group) {
                 setChosenGroup(match.params.group, result);
             }
-            else{
+            else {
                 selectGroup(result[0].name)
             }
         }
@@ -84,6 +84,19 @@ function Groups({ match, history }) {
         history.push(`/groups/${group}`)
     }
 
+    const deleteGroup = async group => {
+        if (confirm(`Are you sure you want to delete the group: ${group}?`)) {
+
+            await GroupsService.deleteGroup(group);
+            const tempArray = groups.filter(curr => curr.name != group);
+            setGroups(tempArray);
+            if (chosenGroup.name == group) {
+                selectGroup(tempArray[0].name)
+            }
+        }
+    }
+
+
     const onAddGroup = group => {
         const newGroups = groups.slice();
         newGroups.push(group);
@@ -102,11 +115,12 @@ function Groups({ match, history }) {
 
         <div className={classes.cardsContainer}>
             {chosenGroup && <GroupInstances className={classes.quotesCard} group={chosenGroup} />}
-            <GroupsCard className={classes.groupsCard} groups={groups} chosen={chosenGroup && chosenGroup.name} clickGroup={selectGroup} />
+            <GroupsCard className={classes.groupsCard} groups={groups} chosen={chosenGroup && chosenGroup.name} clickGroup={selectGroup} deleteGroup={deleteGroup} />
         </div>
 
         <AddGroup open={dialogOpen} handleClose={handleClose} onAdd={onAddGroup}></AddGroup>
     </div>
 }
+
 
 export default withRouter(Groups);

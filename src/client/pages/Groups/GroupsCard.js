@@ -13,8 +13,12 @@ function GroupsCard(props) {
     const [filteredGroups, setGroups] = useState(groups);
 
     const onGroupClick = name => e => {
-        if (props.clickGroup)
-            props.clickGroup(name)
+        props.clickGroup(name)
+    }
+
+    const onGroupDelete = name => e => {
+        e.stopPropagation();
+        props.deleteGroup(name);
     }
 
     useEffect(() => {
@@ -58,7 +62,7 @@ function GroupsCard(props) {
                         <List.Header>
                             <Box display="flex" justifyContent="space-between">
                                 {group.name}
-                                <DeleteButton onDelete={alert}/>
+                                <DeleteButton onDelete={onGroupDelete(group.name)}/>
                             </Box>
                         </List.Header>
                         {group.words.join(', ')}

@@ -4,6 +4,7 @@ import WordService from '../Words/WordService';
 import QuotesCard from '../../commons/Quotes/QuotesCard'
 import PhrasesService from './PhrasesService'
 import WordsQuotesService from '../Words/Quotes/WordsQuotesService'
+import TextService from '../../commons/TextService'
 import _ from 'lodash'
 
 function PhraseQuotes(props) {
@@ -17,8 +18,8 @@ function PhraseQuotes(props) {
         const instances = result.data;
         instances.forEach(async instance => {
             const { song_id, song_name, artist, total_line_index } = instance;
-            const lineElements = await SongService.getLine(song_id, total_line_index);
-            const line = PhrasesService.createLine(phrase, lineElements);
+            const result = await SongService.getLine(song_id, total_line_index);
+            const line = TextService.makeTextWithBold(result.data, phrase);
 
             let song = songQuotes.find(sq => sq.song.id == song_id);
             if (!song) {
@@ -26,7 +27,7 @@ function PhraseQuotes(props) {
                 songQuotes.push(song);
             }
 
-            if (!song.lines.some(exsLine => exsLine.totalLineIndex  == total_line_index)) {
+            if (!song.lines.some(exsLine => exsLine.totalLineIndex == total_line_index)) {
                 const quote = WordsQuotesService.createQuote(instance, line);
                 song.lines.push(quote);
                 songQuotes = songQuotes.slice();

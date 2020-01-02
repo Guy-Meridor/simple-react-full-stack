@@ -4,13 +4,15 @@ const api = require('./api')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload');
 const app = express();
+const root = require('app-root-path');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(fileUpload({ createParentPath: true }));
 
 app.engine('html', require('ejs').renderFile);
-app.set('views', 'C:\\Guy\\מדעי המחשב\\סדנה בסיסי נתונים\\Project\\simple-react-full-stack\\dist')
+app.set('views', `${root.path}/dist`)
+// app.set('views', 'C:\\Guy\\מדעי המחשב\\סדנה בסיסי נתונים\\Project\\simple-react-full-stack\\dist')
 app.set('view engine', 'html');
 
 app.use('/api', api);

@@ -3,12 +3,12 @@ const GroupsAPI = axios.create({
     baseURL: `/api/groups`,
 });
 
-const publicAPI = {}
+const publicApi = {}
 
-publicAPI.addWordToGroup = (group, word) => GroupsAPI.post(`/${group}`, { word });
-publicAPI.addGroup = group => GroupsAPI.post('/', { group });
-publicAPI.getGroups = GroupsAPI.get;
+publicApi.addWordToGroup = (group, word) => GroupsAPI.post(`/${group}`, { word });
+publicApi.addGroup = group => GroupsAPI.post('/', { group });
+publicApi.getGroups = GroupsAPI.get;
 publicApi.deleteGroup = groupName => GroupsAPI.delete(`/${groupName}`);
 
 
-export default publicAPI
+export default publicApi

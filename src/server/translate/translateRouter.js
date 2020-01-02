@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
 // const credentialsPath = './Song Analyzer-9cc26a513377.json';
-require('../')
 const credentialsPath = './Song Analyzer-9cc26a513377.json';
 process.env.GOOGLE_APPLICATION_CREDENTIALS = credentialsPath
 const credentials = require(`../../../${credentialsPath}`);

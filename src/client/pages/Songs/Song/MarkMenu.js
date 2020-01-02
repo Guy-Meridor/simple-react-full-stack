@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import AllGroupsDialog from './AllGroupsDialog'
 import { withRouter } from 'react-router-dom'
 import PhraseService from '../../Phrases/PhrasesService'
+import GroupsService from '../../Groups/GroupsService'
 
 function MarkMenu(props) {
     const { onClose, open, selection } = props;
@@ -35,7 +35,7 @@ function MarkMenu(props) {
     }
 
     const addToGroupAndRedirect = async  group => {
-        await GroupsService.addWordToGroup(group, props.word)
+        await GroupsService.addWordToGroup(group, selection)
         props.history.push(`/groups/${group}`);
     }
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import WordLink from '../../../commons/WordLink'
 import Typography from '@material-ui/core/Typography';
 import SongService from '../SongService'
 import Icon from '@material-ui/core/Icon';
@@ -12,7 +11,8 @@ import Box from '@material-ui/core/Box';
 import DeleteButton from '../../../commons/DeleteButton'
 import Grid from '@material-ui/core/Grid';
 import MarkMenu from './MarkMenu'
-
+import { withRouter } from 'react-router-dom'
+import TextService from '../../../commons/TextService'
 
 const useStyles = makeStyles({
     card: {
@@ -21,10 +21,11 @@ const useStyles = makeStyles({
         marginRight: '25%',
     },
     cardHeader: {
-        flexGrow: 1
+        flexGrow: 1,
     },
     image: {
-        maxWidth: '100%',
+        maxHeight: '35vh',
+        width: '100%',
     },
 
     lyrics: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
 });
 
 
-function Song({ match }) {
+function Song({ match, history }) {
     const classes = useStyles(match.params);
     const { id } = match.params;
 
@@ -59,14 +60,6 @@ function Song({ match }) {
         const selection = window.getSelection().toString();
         if (selection)
             setMarkMenu(true)
-        // {
-        //     if (selection.includes(' ')){
-
-        //     }
-        //     else{
-
-        //     }
-        // }
     }
 
     const closeMarkMenu = () => {
@@ -76,16 +69,21 @@ function Song({ match }) {
     async function fetchLyrics() {
         const result = await SongService.getSongLyrics(id);
 
-        const song = result.data.reduce((acc, curr) => acc +
-            (curr.type === 'word' ? ' ' : '') + curr.element, '');
+        const elements = result.data;
+        const text = TextService.makeText(elements);
+        setLyrics(text)
+    }
 
-        setLyrics(song)
+    async function deleteSong() {
+        if (confirm(`Are you sure you want to delete ${titles.name} by ${titles.artist}?`)) {
+            await SongService.deleteSong(id);
+            history.push('/');
+        }
     }
 
     return (
         <Card className={classes.card}>
             <div className={classes.cardHeader}>
-
                 <Grid container spacing={1}>
                     <Grid item xs={5}>
                         <img className={classes.image} src={`/assets/songImages/${match.params.id}.jpg`}></img>
@@ -95,7 +93,7 @@ function Song({ match }) {
                             <Typography variant="h4" component="span">
                                 {titles.name}
                             </Typography>
-                            <DeleteButton onDelete={alert} />
+                            <DeleteButton onDelete={deleteSong} />
                         </Box>
                         <Typography variant="h6" color="textSecondary">
                             {titles.artist}
@@ -113,9 +111,9 @@ function Song({ match }) {
                 </Typography>
             </CardContent>
             <FindInSong open={finderOpen} handleClose={setFinderState(false)} songId={id} />
-            <MarkMenu open={markMenuOpen} onClose={closeMarkMenu} selection={window.getSelection().toString()} />
+            <MarkMenu open={markMenuOpen} onClose={closeMarkMenu} selection={window.getSelection().toString().trim()} />
         </Card >
     );
 }
 
-export default Song
+export default withRouter(Song)

@@ -37,11 +37,11 @@ function InstancesTable(props) {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {props.instances.map((wordInstances, index1) =>
-                    wordInstances.instances.map((instance, index2) =>
-                        <TableRow key={`${index1}-${index2}`}>
-                            <TableCell component="th" scope="row">
-                                {wordInstances.word}
+                {props.instances.map((instance, index1) =>
+                    // wordInstances.instances.map((instance, index2) =>
+                        <TableRow key={index1}>
+                            <TableCell >
+                                {instance.word}
                             </TableCell>
                             <TableCell>{instance.song_name}</TableCell>
                             <TableCell>{instance.song_artist}</TableCell>
@@ -50,7 +50,7 @@ function InstancesTable(props) {
                             <TableCell>{instance.total_line_index}</TableCell>
                             <TableCell>{instance.inline_index}</TableCell>
                         </TableRow>
-                    ))}
+                    )}
             </TableBody>
         </Table>
     </Grid>

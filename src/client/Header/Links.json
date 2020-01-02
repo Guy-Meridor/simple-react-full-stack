@@ -17,5 +17,8 @@
     },{
         "route":"/statistics",
         "text": "Statistics"
+    },{
+        "route":"/instances",
+        "text": "Instances"
     }
 ]

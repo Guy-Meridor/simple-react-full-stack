@@ -86,9 +86,10 @@ function Phrases({ match, history }) {
 
             const result = await PhrasesService.deletePhrase(phrase);
             if (result.data) {
-                fetchPhrases();
-                if (phrase == chosenPhrase) {
-                    setChosen(null);
+                const tempArray = phrases.filter(curr => curr != phrase);
+                setPhrases(tempArray);
+                if (chosenPhrase == phrase){
+                    selectPhrase(tempArray[0])
                 }
             }
         }

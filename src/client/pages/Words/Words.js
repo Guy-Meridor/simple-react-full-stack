@@ -8,6 +8,8 @@ import SearchWords from './SearchWords'
 import { withRouter } from 'react-router-dom'
 import AllWordsDialog from './AllWordsDialog'
 import PhraseQuotes from '../Phrases/PhraseQuotes'
+import { Button } from 'semantic-ui-react'
+
 
 const useStyles = makeStyles({
     root: {
@@ -68,11 +70,11 @@ function Words({ match, history }) {
         </Typography>
         <div className={classes.container}>
             <SearchWords className={classes.searchBarContainer} value={word} executeSearch={executeSearch} inputClassName={classes.searchBar} />
-            <Typography color="primary" onClick={toggleWordsDialog(true)}>All Words</Typography>
+            <Button primary onClick={toggleWordsDialog(true)}>All Words</Button>
         </div>
         {word && <div className={classes.cardsContainer}>
             {isPhrase ? <PhraseQuotes className={classes.quotesCard} phrase={word} /> :
-                <WordsQuotesCard className={classes.quotesCard} words={[word]} />}
+                <WordsQuotesCard className={classes.quotesCard} word={word} />}
 
             <TranslateCard className={classes.translateCard} word={word} />
         </div>}

@@ -21,6 +21,10 @@ publicApi.getWordsCounts = async () => {
     return getStat('/words/counts')
 }
 
+publicApi.getPhrasesCounts = async () => {
+    return getStat('/phrases/counts')
+}
+
 async function getStat(path)  {
     const result = await StatisticsAPI.get(path);
     const lengths = result.data.map(length => ({
