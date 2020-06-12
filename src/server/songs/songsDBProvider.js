@@ -6,7 +6,7 @@ publicApi.getSongs = async () => {
     return result.rows;
 }
 
-publicApi.filterSongs = async (name, artist, words) => {
+publicApi.filterSongs = async (name, artist, words) => {z
     const params = [name, artist, words];
     const result = await db.function('filtersongs', params);
     return result.rows;

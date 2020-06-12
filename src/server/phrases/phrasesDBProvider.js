@@ -23,7 +23,7 @@ publicApi.deletePhrase = async phrase => {
 }
 
 publicApi.getPhraseInstances = async phrase => {
-    const words = phrase.split(" ");
+    const words = phrase.trim().split(" ");
 
     const query = {
         values: words,
