@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import _ from 'lodash';
 import WordsQuotesCard from './Quotes/WordsQuotesCard';
@@ -9,15 +8,12 @@ import { withRouter } from 'react-router-dom'
 import AllWordsDialog from './AllWordsDialog'
 import PhraseQuotes from '../Phrases/PhraseQuotes'
 import { Button } from 'semantic-ui-react'
+import PageTitle from "../../commons/PageTitle";
 
 
 const useStyles = makeStyles({
     root: {
         marginLeft: '3vh',
-    },
-    title: {
-        textAlign: 'center',
-        marginBottom: '3vh'
     },
     container: {
         display: 'flex'
@@ -65,9 +61,9 @@ function Words({ match, history }) {
     const isPhrase = word && word.includes(' ');
 
     return <div className={classes.root}>
-        <Typography className={classes.title} variant="h5">
+        <PageTitle>
             Words
-        </Typography>
+        </PageTitle>
         <div className={classes.container}>
             <SearchWords className={classes.searchBarContainer} value={word} executeSearch={executeSearch} inputClassName={classes.searchBar} />
             <Button primary onClick={toggleWordsDialog(true)}>All Words</Button>

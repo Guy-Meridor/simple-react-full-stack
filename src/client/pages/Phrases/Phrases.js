@@ -7,16 +7,12 @@ import AddPhrase from './AddPhrase'
 import PhrasesService from './PhrasesService'
 // import WordsQuotesCard from './../Words/Quotes/WordsQuotesCard'
 import PhraseQuotes from './PhraseQuotes'
-// import PhraseInstances from './PhraseInstances'
-
+import PageTitle from "../../commons/PageTitle";
 import PhrasesCard from './PhrasesCard'
 import { withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles({
-    title: {
-        textAlign: 'center',
-        marginBottom: '3vh'
-    },
+    
     addIcon: {
         marginLeft: '10'
     },
@@ -96,12 +92,12 @@ function Phrases({ match, history }) {
     }
 
     return <div>
-        <Typography className={classes.title} variant="h5">
+        <PageTitle>
             Phrases
             <IconButton onClick={handleClickOpen}>
                 <Icon color='primary' className={classes.addIcon}>add</Icon>
             </IconButton>
-        </Typography>
+        </PageTitle>
 
         <div className={classes.cardsContainer}>
             {chosenPhrase && <PhraseQuotes className={classes.quotesCard} phrase={chosenPhrase} />}

@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import GroupsService from '../Words/WordService'
 import InstancesCard from './InstancesCard'
+import PageTitle from "../../commons/PageTitle";
 
 const useStyles = makeStyles({
-    title: {
-        textAlign: 'center',
-        marginBottom: '3vh'
-    },
-    
     cardsContainer: {
         marginTop: '3vh',
     },
@@ -25,9 +19,9 @@ function Instances({ match, history }) {
     const classes = useStyles();
 
     return <div>
-        <Typography className={classes.title} variant="h5">
+        <PageTitle>
             Instances
-        </Typography>
+        </PageTitle>
 
         <div className={classes.cardsContainer}>
             <InstancesCard className={classes.instancesCard}/>

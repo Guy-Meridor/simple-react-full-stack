@@ -1,4 +1,4 @@
 body{
     margin:0;
-    background-color: #e9ebee
+    background:var(--primary-bg) !important;
 }

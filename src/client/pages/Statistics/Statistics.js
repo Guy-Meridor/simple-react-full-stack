@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import StatCard from './StatCard'
 import StatisticsService from './StatisticsService'
+import PageTitle from "../../commons/PageTitle";
 
 const useStyles = makeStyles({
-    title: {
-        textAlign: 'center',
-        marginBottom: '1vh'
-    },
     statsContainer: {
         display: 'flex',
         justifyContent: 'center',
@@ -56,9 +52,9 @@ function Statistics(props) {
     ]
 
     return <div>
-        <Typography className={classes.title} variant="h5">
+        <PageTitle>
             Statistics
-        </Typography>
+        </PageTitle>
         <div className={classes.statsContainer}>
             {cardsProps.map(cp => <StatCard className={classes.statCard} pieContainer={classes.pieContainer} {...cp} />)}
         </div>

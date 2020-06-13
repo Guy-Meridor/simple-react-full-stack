@@ -1,0 +1,9 @@
+body{
+    --primary-bg: #e9ebee
+
+}
+
+body.dark-mode{
+    --primary-bg:  #18191a
+}
+

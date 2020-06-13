@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton'
 import AddSong from './AddSong'
 import SongService from './SongService'
 import FilterSongs from './FilterSongs'
+import PageTitle from "../../commons/PageTitle";
 
 const useStyles = makeStyles(theme => ({
     songsContainer: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 
     },
     title: {
+        color: theme.palette.text.primary,
         textAlign: 'center',
         marginBottom: '3vh'
     },
@@ -62,12 +64,12 @@ function AllSongs() {
 
     return (
         <div>
-            <Typography className={classes.title} variant="h5">
+            <PageTitle>
                 Songs
             <IconButton onClick={handleClickOpen}>
                     <Icon color='primary' className={classes.addIcon}>add</Icon>
                 </IconButton>
-            </Typography>
+            </PageTitle>
             <div className={classes.songsContainer}>
                 {songs.map(song => (
                     <SongView key={song.id} song={song} />
