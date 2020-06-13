@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PageTitle(props) {
-//   const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <Typography className={classes.title} variant="h5">
