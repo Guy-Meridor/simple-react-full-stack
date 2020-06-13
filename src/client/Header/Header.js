@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
 import Links from "./Links.json";
-import Button from '@material-ui/core/Button';
+import ThemeChange from '../themes/ThemeChange'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,9 +61,7 @@ export default function Header(props) {
           ))}
         </section>
         <section>
-          <Button onClick={props.changePalette}>
-            dark mode
-          </Button>
+          <ThemeChange/>
         </section>
       </Toolbar>
     </AppBar>

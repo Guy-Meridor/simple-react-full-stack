@@ -9,34 +9,26 @@ import Phrases from "./pages/Phrases/Phrases";
 import Statistics from "./pages/Statistics/Statistics";
 import Instances from "./pages/Instances/Instances";
 import Notfound from "./pages/NotFound/NotFound";
-
-// import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import { useState, useEffect } from "react";
-
+import { useContext } from "react";
+import ThemeContext from './themes/ThemeContext';
 import './themes/themes.css'
 import './App.css'
 
-
 export default function App() {
-  const [palette, setPalette] = useState("light");
-  const changePalette = () => {
-    setPalette(palette == "light" ? "dark" : "light");
-    document.body.classList.toggle("dark-mode");
-  };
+  const { dark } = useContext(ThemeContext);
 
   const theme = createMuiTheme({
     palette: {
-      type: palette,
+      type: dark ? 'dark' : 'light' ,
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Header changePalette={changePalette} />
-        <div >
+        <Header />
           <Switch>
             <Route path="/words/:word?" component={Words} />
             <Route path="/groups/:group?" component={Groups} />
@@ -47,7 +39,6 @@ export default function App() {
             <Route path="/" exact component={AllSongs} />
             <Route component={Notfound} />
           </Switch>
-        </div>
       </Router>
     </ThemeProvider>
   );
