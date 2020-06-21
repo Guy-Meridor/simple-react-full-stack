@@ -3,12 +3,13 @@ import { Input } from 'semantic-ui-react'
 import WordsService from './WordService'
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     searchBar: {
         width: '100%',
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary
     }
-})
-
+}))
 
 function SearchWords(props) {
     const classes = useStyles()
@@ -61,7 +62,7 @@ function SearchWords(props) {
             onChange={searchChange}
             icon="search"
             placeholder='Search Word...'
-            className={`${props.inputClassName} ${classes.searchBar}`} />
+            className={`${props.inputClassName} ${classes.searchBar}`}/>
         <datalist id={`${props.id}-words`}>
             {searchResults.map(r => <option key={r} value={r}></option>)}
         </datalist>

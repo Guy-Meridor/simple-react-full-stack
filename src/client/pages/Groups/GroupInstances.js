@@ -10,13 +10,6 @@ import IconButton from '@material-ui/core/IconButton'
 import ExcelExporter from '../../commons/ExcelExporter'
 import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles({
-    title: {
-        textAlign: 'center',
-        marginBottom: '3vh'
-    }
-})
-
 function GroupInstances(props) {
     const { group } = props;
     const [Instances, setInstances] = useState([]);

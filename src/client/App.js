@@ -12,16 +12,16 @@ import Notfound from "./pages/NotFound/NotFound";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { useContext } from "react";
-import ThemeContext from './themes/ThemeContext';
-import './themes/themes.css'
-import './App.css'
+import ThemeContext from "./themes/ThemeContext";
+import "./themes/themes.css";
+import "./App.css";
 
 export default function App() {
   const { dark } = useContext(ThemeContext);
 
   const theme = createMuiTheme({
     palette: {
-      type: dark ? 'dark' : 'light' ,
+      type: dark ? "dark" : "light",
     },
   });
 
@@ -29,16 +29,16 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Header />
-          <Switch>
-            <Route path="/words/:word?" component={Words} />
-            <Route path="/groups/:group?" component={Groups} />
-            <Route path="/phrases/:phrase?" component={Phrases} />
-            <Route path="/songs/:id" component={Song} />
-            <Route path="/statistics" component={Statistics} />
-            <Route path="/Instances" component={Instances} />
-            <Route path="/" exact component={AllSongs} />
-            <Route component={Notfound} />
-          </Switch>
+        <Switch>
+          <Route path="/words/:word?" component={Words} />
+          <Route path="/groups/:group?" component={Groups} />
+          <Route path="/phrases/:phrase?" component={Phrases} />
+          <Route path="/songs/:id" component={Song} />
+          <Route path="/statistics" component={Statistics} />
+          <Route path="/Instances" component={Instances} />
+          <Route path="/" exact component={AllSongs} />
+          <Route component={Notfound} />
+        </Switch>
       </Router>
     </ThemeProvider>
   );

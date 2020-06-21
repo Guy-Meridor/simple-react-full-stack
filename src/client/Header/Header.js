@@ -4,17 +4,21 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
 import Links from "./Links.json";
-import ThemeChange from '../themes/ThemeChange'
+import ThemeChange from "../themes/ThemeChange";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     marginBottom: "2vh",
+    borderBottom:`1px solid ${theme.palette.divider}`,
     "& a": {
       textDecoration: "none",
       color: theme.palette.text.primary,
       fontFamily: "Roboto, Helvetica, Arial, sans-serif",
       fontSize: "16px",
+      // '&:hover':{
+      //   backgroundColor: theme.palette.grey[300]
+      // }
     },
   },
   toolbar: {
@@ -41,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   return (
-    <AppBar className={classes.root} position="sticky">
+    <AppBar  className={classes.root} position="sticky" elevation={0}>
       <Toolbar className={classes.toolbar}>
         <section>
           <Link className={classes.homeLinks} to="/">
@@ -61,7 +65,7 @@ export default function Header(props) {
           ))}
         </section>
         <section>
-          <ThemeChange/>
+          <ThemeChange />
         </section>
       </Toolbar>
     </AppBar>

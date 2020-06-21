@@ -8,6 +8,8 @@ import { withRouter } from 'react-router-dom'
 import AllWordsDialog from './AllWordsDialog'
 import PhraseQuotes from '../Phrases/PhraseQuotes'
 import { Button } from 'semantic-ui-react'
+// import Button from '@material-ui/core/Button';
+
 import PageTitle from "../../commons/PageTitle";
 
 
@@ -66,7 +68,7 @@ function Words({ match, history }) {
         </PageTitle>
         <div className={classes.container}>
             <SearchWords className={classes.searchBarContainer} value={word} executeSearch={executeSearch} inputClassName={classes.searchBar} />
-            <Button primary onClick={toggleWordsDialog(true)}>All Words</Button>
+            <Button color="primary" onClick={toggleWordsDialog(true)}>All Words</Button>
         </div>
         {word && <div className={classes.cardsContainer}>
             {isPhrase ? <PhraseQuotes className={classes.quotesCard} phrase={word} /> :

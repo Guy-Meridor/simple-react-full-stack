@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState } from "react";
 
 const ThemeContext = React.createContext({
   dark: false,
@@ -7,7 +7,7 @@ const ThemeContext = React.createContext({
 
 export default ThemeContext;
 
-export function ThemeProvider (props) {
+export function ThemeProvider(props) {
   // keeps state of the current theme
   const [dark, setDark] = useState(false);
 
@@ -17,11 +17,13 @@ export function ThemeProvider (props) {
   };
 
   return (
-    <ThemeContext.Provider value={{
-      dark,
-      toggle,
-    }}>
+    <ThemeContext.Provider
+      value={{
+        dark,
+        toggle,
+      }}
+    >
       {props.children}
     </ThemeContext.Provider>
-  )
+  );
 }
