@@ -1,11 +1,14 @@
 const express = require('express');
-const api = require('./api')
+const api = require('./api');
+
+const cors = require("cors");
 
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload');
 const app = express();
 const root = require('app-root-path');
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(fileUpload({ createParentPath: true }));
