@@ -5,23 +5,6 @@ const SongAPI = axios.create({
 
 const publicApi = {};
 
-publicApi.addSong = async ({ metadata, lyrics, image }) => {
-    const metaResult = await SongAPI.post('/metadata', { song: metadata });
-    const { newId } = metaResult.data;
-
-    const formData = new FormData();
-    formData.append('lyrics', values.lyrics);
-    formData.append('image', values.image);
-    // formData.append('a', 5);
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    }
-
-    return SongAPI.post(`/${newId}/files`, formData, config);
-}
-
 publicApi.getSongs = SongAPI.get;
 publicApi.filterSongs = filters => SongAPI.post('/filter', filters);
 
@@ -39,9 +22,3 @@ publicApi.getLine = (songId, line) =>
 publicApi.deleteSong = songId => SongAPI.delete(`/${songId}`)
 
 export default publicApi;
-
-
-
-// export default axios.create({
-//     baseURL: `/api/songs`,
-// });

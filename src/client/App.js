@@ -9,7 +9,7 @@ import Phrases from "./pages/Phrases/Phrases";
 import Statistics from "./pages/Statistics/Statistics";
 import Instances from "./pages/Instances/Instances";
 import Notfound from "./pages/NotFound/NotFound";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { useContext } from "react";
 import ThemeContext from "./themes/ThemeContext";
@@ -19,10 +19,10 @@ import "./App.css";
 export default function App() {
   const { dark } = useContext(ThemeContext);
 
-  const theme = createMuiTheme({
-    palette: {
-      type: dark ? "dark" : "light",
-    },
+  const theme = createTheme({
+      palette: {
+          type: dark ? "dark" : "light",
+      },
   });
 
   return (

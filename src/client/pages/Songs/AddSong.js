@@ -85,7 +85,6 @@ export default function AddSong(props) {
                         Cancel
           </Button>
                     <Button type="submit"
-                        // onClick={addSong}
                         color="primary">
                         Add
           </Button>
